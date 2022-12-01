@@ -4,23 +4,22 @@
     {
         public static void Solve(List<string> input)
         {
-            var elfs = input;
-            List<int> list = new();
+            List<int> calsPerElfList = new();
             int calsPerElf = 0;
 
-            foreach (var elf in elfs)
+            foreach (var elfItem in input)
             {
-                if (!string.IsNullOrEmpty(elf))
+                if (!string.IsNullOrEmpty(elfItem))
                 {
-                    calsPerElf += int.Parse(elf);
+                    calsPerElf += int.Parse(elfItem);
                     continue;
                 }
-                list.Add(calsPerElf);
+                calsPerElfList.Add(calsPerElf);
                 calsPerElf = 0;
             }
 
-            var topOne = list.OrderByDescending(x => x).Take(1).Sum();
-            var topThree = list.OrderByDescending(x => x).Take(3).Sum();
+            var topOne = calsPerElfList.OrderByDescending(x => x).Take(1).Sum();
+            var topThree = calsPerElfList.OrderByDescending(x => x).Take(3).Sum();
 
             Console.WriteLine($"Part one: {topOne}");
             Console.WriteLine($"Part two: {topThree}");
