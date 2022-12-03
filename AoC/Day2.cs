@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AoC
+﻿namespace AoC
 {
     public class Day2
     {
+        //TODO: bloated
         public static void Solve(List<string> input)
         {
             int grandScore = 0;
@@ -21,8 +16,7 @@ namespace AoC
                 var pointRes = CalcPointRes(result);
                 grandScore += pointsHand + pointRes;
             }
-            Console.WriteLine(grandScore);
-            Console.ReadLine();
+            Console.WriteLine($"Part one {grandScore}");
         }
 
         public static void Solve2(List<string> input)
@@ -33,22 +27,20 @@ namespace AoC
                 List<string> hands = line.Split(' ').ToList();
                 var elfHand = ParseMove(hands[0]);
                 var resultShouldBe = EncryptedMove(hands[1]);
-
                 var encryptedMove = DecideMove(elfHand, resultShouldBe);
                 var result = DecideWinner(elfHand, encryptedMove);
                 var pointsHand = CalcPointsHand(encryptedMove);
                 var pointRes = CalcPointRes(result);
                 grandScore += pointsHand + pointRes;
             }
-            Console.WriteLine(grandScore);
-            Console.ReadLine();
+            Console.WriteLine($"Part two {grandScore}");
         }
         private static Move DecideMove(Move elfMove, Result resultShouldBe)
         {
             return resultShouldBe switch
             {
                 Result.Lose when elfMove == Move.Rock => Move.Scissor,
-                Result.Lose when elfMove == Move.Scissor=> Move.Paper,
+                Result.Lose when elfMove == Move.Scissor => Move.Paper,
                 Result.Lose when elfMove == Move.Paper => Move.Rock,
                 Result.Win when elfMove == Move.Rock => Move.Paper,
                 Result.Win when elfMove == Move.Scissor => Move.Rock,
@@ -119,7 +111,6 @@ namespace AoC
             Paper = 1,
             Scissor = 2
         }
-
 
         private enum Result
         {
