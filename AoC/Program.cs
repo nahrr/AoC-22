@@ -20,5 +20,9 @@ Day3.Solve(File.ReadAllLines(string.Format(path, 3)).ToList());
 Day3.Solve2(File.ReadAllLines(string.Format(path, 3)).ToList());
 EndLine();
 
+StartLine(4);
+Day4.Solve(File.ReadAllLines(string.Format(path, 4)).ToList());
+EndLine();
+
 Console.WriteLine("Press enter to exit");
 Console.ReadLine();
