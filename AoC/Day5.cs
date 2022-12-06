@@ -76,7 +76,6 @@ namespace AoC
                 res2 += col.First();
 
             Console.WriteLine($"Solution two {res2}");
-            Console.ReadLine();
         }
     }
 }
