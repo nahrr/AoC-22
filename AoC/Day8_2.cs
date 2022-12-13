@@ -13,7 +13,7 @@ namespace AoC
         {
             var trees = ParseTrees(input);
             CalcScenicScore(trees);
-            Console.WriteLine($"Soluton 2 {_trees.Select(x => x.Calc()).Max()}");
+            Console.WriteLine($"Soluton two {_trees.Select(x => x.Calc()).Max()}");
 
         }
         private static void CalcScenicScore(List<List<int>> trees)

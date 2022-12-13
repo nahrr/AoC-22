@@ -17,7 +17,7 @@ namespace AoC
             CalcCols(trees);
             CalcColsRev(trees);
            
-            Console.WriteLine($"Solution two {_trees.Count()}");
+            Console.WriteLine($"Solution one {_trees.Count()}");
         }
 
         private static void AddTree(int x, int y, int height)
