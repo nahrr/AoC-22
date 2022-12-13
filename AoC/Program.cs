@@ -32,5 +32,16 @@ StartLine(6);
 Day6.Solve(File.ReadAllLines(string.Format(path, 6)).ToList());
 EndLine();
 
+StartLine(7);
+Day7.Solve(File.ReadAllLines(string.Format(path, 7)).ToList());
+EndLine();
+
+StartLine(8);
+Day8.Solve(File.ReadAllLines(string.Format(path, 8)).ToList());
+Day8_2.Solve2(File.ReadAllLines(string.Format(path, 8)).ToList());
+EndLine();
+
 Console.WriteLine("Press enter to exit");
 Console.ReadLine();
+
+
