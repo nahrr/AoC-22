@@ -12,23 +12,11 @@ namespace AoC
         public static void Solve2(List<string> input)
         {
             var trees = ParseTrees(input);
-            AddCoords(trees);
-            var sum = _trees.Select(x => x.Calc());
+            CalcScenicScore(trees);
+            Console.WriteLine($"Soluton 2 {_trees.Select(x => x.Calc()).Max()}");
+
         }
-
-
-        //private static void Cols(List<List<int>> trees)
-        //{
-        //    for (int j = 0; j < trees[0].Count; j++)
-        //    {
-        //        for (int i = 0; i < trees.Count; i++)
-        //        {
-        //            AddTree(j, i + 1, trees[i][j]);
-        //        }
-        //    }
-        //}
-
-        private static void AddCoords(List<List<int>> trees)
+        private static void CalcScenicScore(List<List<int>> trees)
         {
             for (int row = 0; row < trees.Count; row++)
             {
@@ -36,26 +24,26 @@ namespace AoC
                 {
                     int viewRight = CalcRightView(col, trees[row][col], trees[row]);
                     int viewLeft = CalcLeftView(col, trees[row][col], trees[row]);
-                    int viewDown = 1;//CalcDownView(col, trees[row][col], trees);
-                   
-                    int viewUp = 1;// CalcUpView(col, trees[row][col], trees);
+                    int viewDown = CalcDownView(col, trees[row][col], trees, row);
+                    int viewUp = CalcUpView(col, trees[row][col], trees, row);
                     _trees.Add(new Tree(viewRight, viewLeft, viewDown, viewUp, trees[row][col]));
                 }
             }
         }
 
-        public static int CalcUpView(int col, int current, List<List<int>> trees)
+        public static int CalcUpView(int col, int current, List<List<int>> trees, int row)
         {
             int count = 0;
 
-            for (int i = trees.Count - 1 - col; i > 0; i--)
+            for (int i = row - 1; i >= 0; i--)
             {
-                if (current >= trees[i][col])
+                if (current > trees[i][col])
                 {
                     count++;
                 }
                 else
                 {
+                    count++;
                     break;
                 }
             }
@@ -63,18 +51,22 @@ namespace AoC
             return count;
         }
 
-        private static int CalcDownView(int col, int current, List<List<int>> trees)
+        private static int CalcDownView(int col, int current, List<List<int>> trees, int row)
         {
+            if (row + 1 == trees.Count)
+                return 0;
+
             int count = 0;
 
-            for (int i = 0; i < trees.Count; i++)
+            for (int i = row + 1; i < trees.Count; i++)
             {
-                if (current >= trees[i][col])
+                if (current > trees[i][col])
                 {
                     count++;
                 }
                 else
                 {
+                    count++;
                     break;
                 }
             }
@@ -85,10 +77,18 @@ namespace AoC
         private static int CalcRightView(int col, int current, List<int> row)
         {
             int count = 0;
-       
+
             for (int i = col + 1; i < row.Count; i++)
             {
-           
+                if (current > row[i])
+                {
+                    count++;
+                }
+                else
+                {
+                    count++;
+                    break;
+                }
             }
 
             return count;
@@ -98,9 +98,15 @@ namespace AoC
         {
             int count = 0;
 
-            for (int i = col; i > 0; i--)
+            for (int i = col - 1; i >= 0; i--)
             {
-             
+                if (current > row[i])
+                    count++;
+                else
+                {
+                    count++;
+                    break;
+                }
             }
 
             return count;
